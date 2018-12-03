@@ -11,7 +11,7 @@ jobs:
   include:
     - stage: "unit tests"
       name: "Unit Tests"
-      script: python -m unittest discover
+      script: python -m unittest discover -v
     - stage: "docker"
       name: "Build & Push Docker Container"
       script:
