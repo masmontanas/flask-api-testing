@@ -13,15 +13,15 @@ class TestCase(unittest.TestCase):
         response = self.app.get('/', follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
-    def test_tasklist_get(self):
+    def test_task_get_all(self):
         response = self.app.get('/tasks', follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
-    def test_task_get(self):
+    def test_task_get_task(self):
         response = self.app.get('/tasks/task1', follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
-    def test_new_task(self):
+    def test_task_new_task(self):
         response = self.app.post('/tasks')
         self.assertEqual(response.status_code, 201)
 
