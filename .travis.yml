@@ -9,6 +9,9 @@ install: pip install -r requirements.txt
 
 jobs:
   include:
+    - stage: "unit tests"
+      name: "Unit Tests"
+      script: python -m unittest discover
     - stage: "docker"
       name: "Build & Push Docker Container"
       script:
