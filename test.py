@@ -14,12 +14,16 @@ class TestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_tasklist_get(self):
-        response = self.app.get('/tasklist', follow_redirects = True)
+        response = self.app.get('/tasks', follow_redirects = True)
         self.assertEqual(response.status_code, 200)
 
     def test_task_get(self):
-        response = self.app.get('/task/task1', follow_redirects = True)
+        response = self.app.get('/tasks/task1', follow_redirects = True)
         self.assertEqual(response.status_code, 200)
+
+    def test_new_task(self):
+        response = self.app.post('/tasks')
+        self.assertEqual(response.status_code, 201)
 
 if __name__ == '__main__':
     try:
