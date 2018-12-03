@@ -25,6 +25,14 @@ class TestCase(unittest.TestCase):
         response = self.app.post('/tasks')
         self.assertEqual(response.status_code, 201)
 
+    def test_task_modify_task(self):
+        response = self.app.put('/tasks/task1')
+        self.assertEqual(response.status_code, 201)
+
+    def test_task_delete_task(self):
+        response = self.app.delete('/tasks/task2')
+        self.assertEqual(response.status_code, 204)
+
 if __name__ == '__main__':
     try:
         unittest.main()

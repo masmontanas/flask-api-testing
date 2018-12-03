@@ -29,6 +29,16 @@ class Task(Resource):
         abort_if_task_doesnt_exist(task_id)
         return TASKS[task_id]
 
+    def delete(self, task_id):
+        abort_if_task_doesnt_exist(task_id)
+        del TASKS[task_id]
+        return '', 204
+
+    def put(self, task_id):
+        args = parser.parse_args()
+        modified_task = {'task': args['task']}
+        TASKS[task_id] = modified_task
+        return modified_task, 201
 
 
 class HelloWorld(Resource):
