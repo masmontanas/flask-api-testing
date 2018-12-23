@@ -1,3 +1,13 @@
+"""
+
+A simple REST API example with Flask.
+
+This application represents a simple tasklist, with update, create and delete functionality.
+API architecture is used to accomplish the task, no pun intended, with a sample data set
+provided by the constant 'TASKS.'
+
+"""
+
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, abort
 
