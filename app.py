@@ -10,9 +10,10 @@ provided by the constant 'TASKS.'
 
 from flask import Flask
 from flask_restful import Resource, Api, reqparse, abort
+from flask_restful_swagger import swagger
 
 app = Flask(__name__)
-api = Api(app)
+api = swagger.docs(Api(app), apiVersion='1.0')
 
 TASKS = {'task1':{'task':'blah'}, 'task2':{'task':'blah1'}}
 
@@ -24,6 +25,7 @@ parser = reqparse.RequestParser()
 parser.add_argument('task')
 
 class TaskList(Resource):
+    @swagger.operation(notes='Retrieves all tasks.')
     def get(self):
         return TASKS
 
