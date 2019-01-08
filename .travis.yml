@@ -7,17 +7,12 @@ services:
 
 install: pip install -r requirements.txt
 
-jobs:
-  include:
-    - stage: "unit tests"
-      name: "Unit Tests"
-      script: python -m unittest discover -v
-    - stage: "docker"
-      name: "Build & Push Docker Container"
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t flask-api-testing:latest .
-        - docker run --name flask-api-testing -d -p 127.0.0.1:8000:8000 flask-api-testing:latest
-        - docker ps -a
-        - docker commit -m='test' flask-api-testing alekj/flask-api-testing
-        - docker push alekj/flask-api-testing
+script: python -m unittest discover -v
+
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t flask-api-testing:latest .
+  - docker run --name flask-api-testing -d -p 127.0.0.1:8000:8000 flask-api-testing:latest
+  - docker ps -a
+  - docker commit -m='test' flask-api-testing alekj/flask-api-testing
+  - docker push alekj/flask-api-testing
